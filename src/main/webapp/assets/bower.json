@@ -1,0 +1,30 @@
+{
+  "name": "deepworking",
+  "authors": [
+    "adolfoweloy <adolfo.eloy@gmail.com>"
+  ],
+  "description": "assets dependencies for deepworking project",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "deepworking",
+    "study"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "bootstrap-datepicker": "^1.5.1",
+    "bootstrap-tagsinput": "^0.7.1",
+    "vanilla-masker": "^1.1.0",
+    "bootbox.js": "bootbox#^4.4.0"
+  }
+}

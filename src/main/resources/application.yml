@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework: ERROR
+    org.springframework.web: DEBUG
+
+# spring mvc
+spring.mvc.view.prefix: /WEB-INF/views/
+spring.mvc.view.suffix: .jsp
+
+# jpa
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/deepwork
+    username: Developer
+    password:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: false
+        format_sql: false
+        ejb.naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        hbm2ddl:
+          auto: validate

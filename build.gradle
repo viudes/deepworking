@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath ('org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE')
+        classpath ('org.flywaydb:flyway-gradle-plugin:3.2.1')
+    }
+}
+
+apply plugin: 'war'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+apply plugin: 'org.flywaydb.flyway'
+
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/deepwork'
+    user = 'Developer'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+
+    compile("org.postgresql:postgresql:9.4-1206-jdbc42")
+    compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+    compile("javax.servlet:jstl")
+    compile("org.apache.commons:commons-lang3:3.4")
+
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    compile("br.com.smart:smartview:0.0.1-SNAPSHOT")
+
+    testCompile("junit:junit")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
