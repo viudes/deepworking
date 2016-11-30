@@ -30,6 +30,16 @@
         <h1>Livro de OAuth <small>All activities</small></h1>
     </div>
 
+    <div id="actions" class="row">
+      <div class="col-md-12">
+        <a href="/project/1/activity/new" class="btn btn-success">New Activity</a>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
           <table class="table table-striped">
             <thead>
                 <tr>
@@ -74,9 +84,8 @@
                 </tr>
             </tbody>
           </table>
-
-      </div>
-
+        </div>
+    </div>
 
   </div>
 </body>
