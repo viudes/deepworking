@@ -34,11 +34,13 @@
             <thead>
                 <tr>
                     <th></th>
+                    <th>Date</th>
                     <th>Activity</th>
                     <th>Start time</th>
                     <th>Amount hours</th>
-                    <th>Description</th>
                     <th>Tags</th>
+                    <th>Description</th>
+                    <th>Score</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,11 +50,13 @@
                           <span class="glyphicon glyphicon-thumbs-up"></span>
                        </a>
                     </td>
+                    <td>29/11/2016</td>
                     <td>Research</td>
-                    <td>29/11/2016 15:00</td>
+                    <td>15:00</td>
                     <td>3</td>
+                    <td>reading, summary, sketch</td>
                     <td>Researching about authentication</td>
-                    <td>reading the book and RFC</td>
+                    <td>Good</td>
                 </tr>
                 <tr>
                     <td>
@@ -60,11 +64,13 @@
                           <span class="glyphicon glyphicon-thumbs-up"></span>
                        </a>
                     </td>
+                    <td>29/11/2016</td>
                     <td>Structure</td>
-                    <td>29/11/2016 10:00</td>
+                    <td>10:00</td>
                     <td>3</td>
-                    <td>Defining the basic structure of chapter 1</td>
                     <td>reading, sketching, writing</td>
+                    <td>Defining the basic structure of chapter 1</td>
+                    <td>Regular</td>
                 </tr>
             </tbody>
           </table>

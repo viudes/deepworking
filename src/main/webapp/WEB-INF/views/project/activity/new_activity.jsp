@@ -6,6 +6,10 @@
 <head>
     <smart:bower_css path="bootstrap/dist/css/bootstrap.css" />
     <smart:bower_css path="bootstrap/dist/css/bootstrap-theme.css" />
+    <smart:bower_css path="bootstrap-datepicker/dist/css/bootstrap-datepicker.css" />
+    <smart:bower_css path="bootstrap-tagsinput/dist/bootstrap-tagsinput.css" />
+    <smart:bower_css path="bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+
     <link href="/assets/css/typeahead.css" rel="stylesheet">
 
     <style>
@@ -33,37 +37,43 @@
 
     <form>
       <div class="row">
-          <div class="col-lg-3">
-              <div>
-                  <dl>
-                    <dt><label for="activityType">Activity type</label></dt>
-                    <dd><input id="activityType" class="typeahead form-control" type="text" placeholder="Type of activity"/></dd>
-                  </dl>
+          <div class="form-group col-lg-2">
+              <label for="date">Date</label>
+              <div id="date" class="input-group date">
+                  <input type="text" class="form-control" placeholder="Date of work"/>
+                  <span class="input-group-addon add-on">
+                    <span class="glyphicon glyphicon-calendar"/>
+                  </span>
               </div>
           </div>
-          <div class="col-lg-6">
-              <div>
-                  <dl>
-                    <dt><label for="activityType">Tags</label></dt>
-                    <dd><input id="activityType" class="form-control" type="text" placeholder="Type related tags to this activity"/></dd>
-                  </dl>
+          <div class="col-lg-2">
+              <label for="activityType">Activity type</label>
+              <div class="form-group">
+                <input id="activityType" class="typeahead form-control" type="text" placeholder="Type of activity"/>
               </div>
           </div>
-
+          <div class="col-lg-2">
+              <dl>
+                  <dt><label for="startTime">Start time</label></dt>
+                  <dd><input class="form-control" type="text" id="startTime" placeholder="Hour when started"/></dd>
+              </dl>
+          </div>
+          <div class="col-lg-2">
+              <dl>
+                  <dt><label for="amountHours">Amount of time</label></dt>
+                  <dd><input class="form-control" type="text" id="amountHours" placeholder="Minutes spent"/></dd>
+              </dl>
+          </div>
       </div>
 
       <div class="row">
-        <div class="col-lg-3">
-            <dl>
-                <dt><label for="startTime">Start time</label></dt>
-                <dd><input class="form-control" type="text" id="startTime" placeholder="When you started work"/></dd>
-            </dl>
-        </div>
-        <div class="col-lg-3">
-            <dl>
-                <dt><label for="amountHours">Amount of hours</label></dt>
-                <dd><input class="form-control" type="text" id="amountHours" placeholder="How much hours did you spent"/></dd>
-            </dl>
+        <div class="col-lg-4">
+            <div>
+                <dl>
+                  <dt><label for="activityType">Tags</label></dt>
+                  <dd><input id="activityType" class="form-control" type="text" placeholder="Type related tags to this activity"/></dd>
+                </dl>
+            </div>
         </div>
         <div class="col-lg-6">
             <dl>
@@ -89,9 +99,20 @@
 <smart:bower_js path="bootstrap/dist/js/bootstrap.js" />
 <smart:bower_js path="typeahead.js/dist/typeahead.jquery.min.js" />
 <smart:bower_js path="typeahead.js/dist/typeahead.bundle.min.js" />
+<smart:bower_js path="bootstrap-tagsinput/dist/bootstrap-tagsinput.js" />
+<smart:bower_js path="bootstrap-datepicker/dist/js/bootstrap-datepicker.js" />
 
 <script type="text/javascript">
-var substringMatcher = function(strs) {
+  $(function() {
+      $('#date').datepicker({
+          format: "dd/mm/yyyy",
+          titleFormat: "MM yyyy"
+      }).on('changeDate', function(evt) {
+          $('.datepicker-dropdown').hide();
+      });
+  });
+
+  var substringMatcher = function(strs) {
     return function findMatches(q, cb) {
       var matches, substringRegex;
 

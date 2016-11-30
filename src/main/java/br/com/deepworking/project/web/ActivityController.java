@@ -16,7 +16,7 @@ public class ActivityController {
         return mv;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView listAll(@PathVariable Integer projectId) {
         ModelAndView mv = new ModelAndView("project/activity/list_activities");
         return mv;
