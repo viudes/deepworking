@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,6 +29,11 @@ public class ProjectController {
         mv.addObject("projects", projects);
 
         return mv;
+    }
+
+    @RequestMapping(value = "/{projectId}", method = RequestMethod.GET)
+    public ModelAndView details(@PathVariable String projectId) {
+        return new ModelAndView("project/project_details");
     }
 
     @RequestMapping(value = "new", method = RequestMethod.GET)

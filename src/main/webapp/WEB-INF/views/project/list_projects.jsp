@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://smart.com.br/tags" prefix="smart"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -41,10 +42,10 @@
         <smart:forEach items="${projects}" var="project">
             <tr>
                 <td>
-                   <a class="details" href="<c:url value='/project/${project.id}/details'/>">
+                   <a class="details" href="<c:url value='/project/1'/>">
                       <span class="glyphicon glyphicon-zoom-in"></span>
                    </a>
-                   <a class="delete" href="<c:url value='/project/${project.id}/delete'/>">
+                   <a class="delete" href="<c:url value='/project/1/delete'/>">
                       <span class="glyphicon glyphicon-trash"></span>
                    </a>
                 </td>

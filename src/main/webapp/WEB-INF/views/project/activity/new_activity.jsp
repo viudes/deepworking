@@ -87,7 +87,7 @@
       <div id="actions" class="row">
         <div class="col-md-12">
           <button type="submit" class="btn btn-primary">Save</button>
-          <a href="<c:url value='/project/1/activity'/>" class="btn btn-default">Cancel</a>
+          <a href="<c:url value='/project/1'/>" class="btn btn-default">Cancel</a>
         </div>
       </div>
 
