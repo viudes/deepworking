@@ -43,7 +43,7 @@
           <table class="table table-striped">
             <thead>
                 <tr>
-                    <th></th>
+                    <th>Rate</th>
                     <th>Date</th>
                     <th>Activity</th>
                     <th>Start time</th>
@@ -57,7 +57,7 @@
                 <tr>
                     <td>
                         <a class="rate" href="<c:url value='/project/${activity.project.id}/activity/${activity.id}/rate'/>">
-                          <span class="glyphicon glyphicon-thumbs-up"></span>
+                          <span class="glyphicon glyphicon-star"></span>
                        </a>
                     </td>
                     <td>29/11/2016</td>
@@ -71,7 +71,7 @@
                 <tr>
                     <td>
                        <a class="rate" href="<c:url value='/project/${activity.project.id}/activity/${activity.id}/rate'/>">
-                          <span class="glyphicon glyphicon-thumbs-up"></span>
+                          <span class="glyphicon glyphicon-star"></span>
                        </a>
                     </td>
                     <td>29/11/2016</td>

@@ -21,4 +21,11 @@ public class ActivityController {
         ModelAndView mv = new ModelAndView("project/activity/list_activities");
         return mv;
     }
+
+    @RequestMapping(value = "/{activityId}/rate")
+    public ModelAndView rateActivity(@PathVariable Integer projectId, @PathVariable Integer activityId) {
+        ModelAndView mv = new ModelAndView("project/activity/rate_activity");
+        return mv;
+    }
+
 }
