@@ -39,9 +39,9 @@
               <dt><label for="rateScore">Score</label></dt>
               <dd>
               <select class="selectpicker" id="rateScore">
-                  <option value="good">Good</option>
-                  <option value="regular">Regular</option>
-                  <option value="bad">Bad</option>
+                  <option value="10">Good</option>
+                  <option value="5">Regular</option>
+                  <option value="0">Bad</option>
               </select>
               </dd>
             </dl>

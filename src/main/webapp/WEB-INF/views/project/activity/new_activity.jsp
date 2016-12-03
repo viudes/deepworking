@@ -53,6 +53,9 @@
                 <input id="activityType" class="typeahead form-control" type="text" placeholder="Type of activity"/>
               </div>
           </div>
+      </div>
+
+      <div class="row">
           <div class="col-lg-2">
               <dl>
                   <dt><label for="startTime">Start time</label></dt>
@@ -68,14 +71,6 @@
       </div>
 
       <div class="row">
-        <div class="col-lg-4">
-            <div>
-                <dl>
-                  <dt><label for="activityType">Tags</label></dt>
-                  <dd><input id="activityType" class="form-control" type="text" placeholder="Type related tags to this activity"/></dd>
-                </dl>
-            </div>
-        </div>
         <div class="col-lg-6">
             <dl>
                 <dt><label for="description">Description</label>
