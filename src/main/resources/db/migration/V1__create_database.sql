@@ -23,40 +23,40 @@ CREATE TABLE project (
 
 ALTER SEQUENCE project_id_seq OWNED BY project.id;
 
--- work_entry
-CREATE SEQUENCE work_entry_id_seq;
-CREATE TABLE work_entry (
+-- activity types for one project
+CREATE sequence activity_type_id_seq;
+
+CREATE TABLE activity_type (
+    id integer PRIMARY KEY,
+    name varchar(100) not null,
+    project_id integer REFERENCES project(id)
+);
+
+ALTER SEQUENCE activity_type_id_seq OWNED BY activity_type.id;
+
+-- activity entry for a project
+CREATE SEQUENCE activity_id_seq;
+
+CREATE TABLE activity (
     id integer PRIMARY KEY,
     project_id integer references project(id),
+    activity_type integer references activity_type(id),
+    start_date date not null,
+    start_time time not null,
     amount_time integer not null default(0),
-    start_time timestamp,
     description varchar(255) not null
 );
-ALTER sequence work_entry_id_seq OWNED BY work_entry.id;
+
+ALTER sequence activity_id_seq OWNED BY activity.id;
 
 -- score
 CREATE SEQUENCE score_id_seq;
 CREATE TABLE score (
     id integer PRIMARY KEY,
-    points integer,
-    description varchar(200),
-    work_entry_id integer REFERENCES work_entry(id)
+    points integer not null,
+    interruptions integer not null,
+    notes varchar(200),
+    activity_id integer REFERENCES activity(id)
 );
 ALTER SEQUENCE score_id_seq OWNED BY score.id;
 
--- label
-CREATE SEQUENCE label_id_seq;
-CREATE TABLE label (
-    id integer PRIMARY KEY,
-    project_id integer references project(id),
-    name varchar(60) not null,
-    description varchar(255)
-);
-ALTER SEQUENCE label_id_seq OWNED BY label.id;
-
--- work_entry_label
-CREATE TABLE work_entry_label (
-    work_entry_id integer references work_entry(id),
-    label_id integer references label(id),
-    constraint work_entry_label_pk primary key (work_entry_id, label_id)
-);
