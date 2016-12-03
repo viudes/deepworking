@@ -17,6 +17,8 @@ public class ActivityType {
 
     private String name;
 
+    private String description;
+
     @ManyToOne
     private Project project;
 
@@ -37,6 +39,14 @@ public class ActivityType {
         return name;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public void setProject(Project project) {
         this.project = project;
     }
@@ -47,7 +57,8 @@ public class ActivityType {
 
     @Override
     public String toString() {
-        return "ActivityType [id=" + id + ", name=" + name + ", project=" + project + "]";
+        return "ActivityType [id=" + id + ", name=" + name + ", description=" + description + ", project=" + project
+                + "]";
     }
 
 }

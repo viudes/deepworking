@@ -54,6 +54,14 @@
           </div>
 
         </div>
+
+        <table class="table">
+           <tr>
+               <td>name</td>
+               <td>description</td>
+           </tr>
+        </table>
+
       </div>
 
       <div id="actions" class="row">
@@ -74,9 +82,6 @@
 <smart:bower_js path="bootstrap-tagsinput/dist/bootstrap-tagsinput.js" />
 
 <script type="text/javascript">
-$(function() {
-    $(".activity-container")
-})();
 </script>
 
 </html>

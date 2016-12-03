@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://smart.com.br/tags" prefix="smart"%>
 
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+
     <smart:bower_css path="bootstrap/dist/css/bootstrap.css" />
     <smart:bower_css path="bootstrap/dist/css/bootstrap-theme.css" />
 
@@ -36,26 +42,26 @@
       </p>
     </div>
 
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-lg-6">
-        <h2>Projects</h2>
-        <p>Manage your projects creating new entries or monitoring reports to get insights.</p>
-        <p>
-          <a class="btn btn-primary" href="/project" role="button">View details
-            &raquo;</a>
-        </p>
-      </div>
+    <table class="table">
+        <tr>
+            <td></td>
+            <td>Project</td>
+            <td>Activities</td>
+        </tr>
 
-      <div class="col-lg-6">
-        <h2>Define activities for your project!</h2>
-        <p>Declare all activities needed to get your project done.</p>
-        <p>
-          <a class="btn btn-primary" href="#" role="button">Create Activities
-            &raquo;</a>
-        </p>
-      </div>
-    </div>
+        <smart:forEach items="${projects}" var="project">
+            <tr>
+                <td>
+                   <a class="details" href="<c:url value='/project/1'/>">
+                      <span class="glyphicon glyphicon-zoom-in"></span>
+                   </a>
+                </td>
+                <td>${project.name}</td>
+                <td>${project.activityTypes}</td>
+            </tr>
+        </smart:forEach>
+
+    </table>
 
   </div>
 </body>

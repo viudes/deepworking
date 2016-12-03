@@ -29,6 +29,7 @@ CREATE sequence activity_type_id_seq;
 CREATE TABLE activity_type (
     id integer PRIMARY KEY,
     name varchar(100) not null,
+    description varchar(255) null,
     project_id integer REFERENCES project(id)
 );
 
@@ -40,8 +41,8 @@ CREATE SEQUENCE activity_id_seq;
 CREATE TABLE activity (
     id integer PRIMARY KEY,
     project_id integer references project(id),
-    activity_type integer references activity_type(id),
-    start_time timestamp not null,
+    activity_type_id integer references activity_type(id),
+    start_time timestamp with time zone not null,
     amount_time_in_minutes integer not null default(0),
     description varchar(255) not null
 );
