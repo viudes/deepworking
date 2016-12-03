@@ -1,19 +1,36 @@
-/**
- * this graph reports best time to work on activities
- */
+var reportActivities = (function() {
 
-var sum = function(a, b) {
-  return a + b;
-};
+  var ctx = document.getElementById("chart-activities"),
+    chart = {};
 
-var activitiesData = {
-  series : [ 6, 3, 1 ]
-};
+  var getLabels = function() {
+    return ["Write", "Structure", "Study", "Read"];
+  };
 
-new Chartist.Pie('.ct-chart-activities', {
-  series : [ 6, 3, 1 ]
-}, {
-  labelInterpolationFnc : function(value) {
-    return Math.round(value / activitiesData.series.reduce(sum) * 100) + '%';
+  chart.get = function() {
+    return new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: getLabels(),
+            datasets: [{
+                label: '# of Votes',
+                data: [70, 10, 5, 15,],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)'
+                ],
+                borderWidth: 1
+            }]
+        }
+    });
+
   }
-});
+
+  return chart;
+
+})();
+
+reportActivities.get();
+

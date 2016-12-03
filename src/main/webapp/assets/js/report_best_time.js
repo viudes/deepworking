@@ -1,48 +1,68 @@
-/**
- * this graph reports best time to work on activities
- */
-var data = {
-  labels : [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ],
-  series : [ {
-    name : 'serie 1',
-    data : [ 5, 2, 4, 2, 0 ]
-  }, {
-    name : 'serie 2',
-    data : [ 2, 4, 3, 1, 5 ]
-  } ]
-};
+var reportBestTime = (function() {
 
-var options = {
-  lineSmooth : false,
+  var ctx = document.getElementById("chart-best-time"),
+      chart = {};
 
-  chartPadding : {
-    top : 20,
-    right : 0,
-    bottom : 30,
-    left : 0
-  },
-
-  plugins : [ Chartist.plugins.ctAxisTitle({
-    axisX : {
-      axisTitle : 'Time (mins)',
-      axisClass : 'ct-axis-title',
-      offset : {
-        x : 0,
-        y : 50
-      },
-      textAnchor : 'middle'
-    },
-    axisY : {
-      axisTitle : 'Goals',
-      axisClass : 'ct-axis-title',
-      offset : {
-        x : 0,
-        y : 0
-      },
-      textAnchor : 'middle',
-      flipTitle : false
+  var getLabels = function() {
+    var labels = [];
+    for (i = 0; i < 23; i++) {
+      labels.push(i);
     }
-  }) ]
-};
+    return labels;
+  };
 
-new Chartist.Line('.ct-chart-best-time', data, options);
+  var timeOfFocus = function() {
+  var focus = [];
+    for (i = 0; i < 23; i++) {
+      focus.push(Math.random() * 9);
+    }
+    return focus;
+  };
+
+  var getScores = function() {
+    var scores = [];
+    for (i = 0; i < 23; i++) {
+      scores.push(Math.random() * 3);
+    }
+    return scores;
+  };
+
+  chart.get = function() {
+    return new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: getLabels(),
+        datasets: [{
+          label: 'Time spent working',
+          data: timeOfFocus(),
+          fill: false,
+          lineTension: 0,
+          borderColor: 'rgba(255, 99, 132, 0.8)',
+          backgroundColor: 'rgba(255, 99, 132, 0.8)'
+        }, {
+          label: 'Score',
+          data: getScores(),
+          fill: false,
+          lineTension: 0,
+          borderColor: 'rgba(75, 192, 192, 0.8)',
+          backgroundColor: 'rgba(75, 192, 192, 0.8)'
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+  };
+
+  return chart;
+
+})();
+
+reportBestTime.get();
+

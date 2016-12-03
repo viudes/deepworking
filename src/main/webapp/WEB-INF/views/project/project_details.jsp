@@ -7,7 +7,6 @@
 <head>
     <smart:bower_css path="bootstrap/dist/css/bootstrap.css" />
     <smart:bower_css path="bootstrap/dist/css/bootstrap-theme.css" />
-    <smart:bower_css path="chartist/dist/chartist.min.css" />
 
     <link href="/assets/css/typeahead.css" rel="stylesheet">
 
@@ -44,20 +43,20 @@
 
     <br/>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">Best time to work</div>
                 <div class="panel-body">
-                    <div class="ct-chart-best-time ct-perfect-fourth"></div>
+                    <canvas id="chart-best-time" height="200"></canvas>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">Activities done</div>
                 <div class="panel-body">
-                    <div class="ct-chart-activities ct-perfect-fourth"></div>
+                    <canvas id="chart-activities" height="200"></canvas>
                 </div>
             </div>
         </div>
@@ -69,8 +68,8 @@
 
 <smart:bower_js path="jquery/dist/jquery.js" />
 <smart:bower_js path="bootstrap/dist/js/bootstrap.js" />
-<smart:bower_js path="chartist/dist/chartist.min.js" />
-<smart:bower_js path="chartist-plugin-axistitle/dist/chartist-plugin-axistitle.min.js" />
+
+<smart:bower_js path="chart.js/dist/Chart.bundle.min.js" />
 
 <script type="text/javascript" src="/assets/js/report_best_time.js"></script>
 <script type="text/javascript" src="/assets/js/report_activities.js"></script>
