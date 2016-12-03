@@ -1,10 +1,18 @@
 package br.com.deepworking.project.model;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+@Entity
 public class Project {
 
     @Id
@@ -14,7 +22,8 @@ public class Project {
 
     private String name;
 
-    private Labels labels = new Labels();
+    @OneToMany(mappedBy = "project")
+    private Set<ActivityType> activityTypes = new HashSet<>();
 
     @Deprecated
     Project() {
@@ -32,12 +41,20 @@ public class Project {
         return name;
     }
 
-    public Labels getLabels() {
-        return labels;
+    public Collection<ActivityType> getActivityTypes() {
+        return Collections.unmodifiableCollection(activityTypes);
     }
 
-    public void addLabel(Label label) {
-        labels.add(label);
+    public void addActivityType(String name) {
+        ActivityType activityType = new ActivityType(name);
+        activityType.setProject(this);
+
+        this.activityTypes.add(activityType);
+    }
+
+    @Override
+    public String toString() {
+        return "Project [id=" + id + ", name=" + name + ", activityTypes=" + activityTypes + "]";
     }
 
 }

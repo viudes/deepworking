@@ -41,9 +41,8 @@ CREATE TABLE activity (
     id integer PRIMARY KEY,
     project_id integer references project(id),
     activity_type integer references activity_type(id),
-    start_date date not null,
-    start_time time not null,
-    amount_time integer not null default(0),
+    start_time timestamp not null,
+    amount_time_in_minutes integer not null default(0),
     description varchar(255) not null
 );
 
