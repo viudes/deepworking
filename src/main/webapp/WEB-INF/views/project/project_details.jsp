@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+
     <smart:bower_css path="bootstrap/dist/css/bootstrap.css" />
     <smart:bower_css path="bootstrap/dist/css/bootstrap-theme.css" />
 
