@@ -10,6 +10,7 @@
     <smart:bower_css path="bootstrap-datepicker/dist/css/bootstrap-datepicker.css" />
     <smart:bower_css path="bootstrap-tagsinput/dist/bootstrap-tagsinput.css" />
     <smart:bower_css path="bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+    <smart:bower_css path="bootstrap-timepicker/css/timepicker.min.css" />
 
     <link href="/assets/css/typeahead.css" rel="stylesheet">
 
@@ -59,7 +60,12 @@
           <div class="col-lg-2">
               <dl>
                   <dt><label for="startTime">Start time</label></dt>
-                  <dd><input class="form-control" type="text" id="startTime" placeholder="Hour when started"/></dd>
+                  <dd>
+                    <div class="input-group bootstrap-timepicker timepicker">
+                      <input id="startTime" name="startTime" type="text" class="form-control input-small input-timepicker" placeholder="Hour when started">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                    </div>
+                  </dd>
               </dl>
           </div>
           <div class="col-lg-2">
@@ -97,6 +103,7 @@
 <smart:bower_js path="typeahead.js/dist/typeahead.bundle.min.js" />
 <smart:bower_js path="bootstrap-tagsinput/dist/bootstrap-tagsinput.js" />
 <smart:bower_js path="bootstrap-datepicker/dist/js/bootstrap-datepicker.js" />
+<smart:bower_js path="bootstrap-timepicker/js/bootstrap-timepicker.js" />
 
 <script type="text/javascript">
   $(function() {
@@ -107,6 +114,8 @@
           $('.datepicker-dropdown').hide();
       });
   });
+
+  $('.input-timepicker').timepicker();
 
   var substringMatcher = function(strs) {
     return function findMatches(q, cb) {
