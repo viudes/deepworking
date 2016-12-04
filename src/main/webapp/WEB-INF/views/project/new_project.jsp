@@ -39,28 +39,31 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">Activities definitions</div>
-        <div class="panel-body">
+        <div class="panel-body activityList">
 
           <div class="row activity-container">
             <div class="col-md-2">
-              <input type="text" class="form-control" placeholder="Name" />
+              <input type="text" class="form-control inputRowName" placeholder="Name" />
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control" placeholder="Description" />
+              <input type="text" class="form-control inputRowDescription" placeholder="Description" />
             </div>
             <div class="col-md-2">
-                <a href="#" class="btn btn-info">Add</a>
+                <a href="#" class="btn btn-info" id="add_activity">Add</a>
             </div>
           </div>
 
-        </div>
+          <div class="row activityRow">
+              <br/>
+              <div class="col-md-2 name">
+              </div>
+              <div class="col-md-6 description">
+              </div>
+              <div class="col-md-2 deleteBox">
+              </div>
+          </div>
 
-        <table class="table">
-           <tr>
-               <td>name</td>
-               <td>description</td>
-           </tr>
-        </table>
+        </div>
 
       </div>
 
@@ -80,8 +83,15 @@
 <smart:bower_js path="vanilla-masker/lib/vanilla-masker.js" />
 <smart:bower_js path="bootstrap/dist/js/bootstrap.js" />
 <smart:bower_js path="bootstrap-tagsinput/dist/bootstrap-tagsinput.js" />
+<script type="text/javascript" src="/assets/js/components.js"></script>
 
 <script type="text/javascript">
+deepworking.smartList.create({
+    container: '.activityList',
+    row: '.activityRow',
+    allowDelete: true,
+    addButton: '#add_activity'
+});
 </script>
 
 </html>
