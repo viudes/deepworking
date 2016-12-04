@@ -24,8 +24,15 @@ public class ProjectController {
     private ProjectService projectService;
 
     @GetMapping("/{projectId}")
-    public ModelAndView details(@PathVariable String projectId) {
-        return new ModelAndView("project/project_details");
+    public ModelAndView details(@PathVariable Integer projectId) {
+        ModelAndView mv = new ModelAndView("project/project_details");
+
+        Project project = projectService.findProjectBy(projectId);
+
+        mv.addObject("projectId", projectId);
+        mv.addObject("projectName", project.getName());
+
+        return mv;
     }
 
     @GetMapping("new")

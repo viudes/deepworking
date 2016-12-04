@@ -35,14 +35,14 @@
   <div class="container">
 
     <div class="page-header">
-        <h1>Livro de OAuth</h1>
+        <h1>${projectName}</h1>
     </div>
 
     <div class="row">
         <div class="col-md-12">
             <a href="<c:url value='/'/>" class="btn btn-default">Home</a>
-            <a href="<c:url value='/project/1/activity'/>" class="btn btn-default">Activities</a>
-            <a href="<c:url value='/project/1/activity/new'/>" class="btn btn-default">New activity</a>
+            <a href="<c:url value='/project/${projectId}/activity'/>" class="btn btn-default">Activities</a>
+            <a href="<c:url value='/project/${projectId}/activity/new'/>" class="btn btn-default">New activity</a>
         </div>
     </div>
 

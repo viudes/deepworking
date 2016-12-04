@@ -12,6 +12,10 @@ public class ProjectViewPresenter {
         this.project = project;
     }
 
+    public Integer getId() {
+        return project.getId();
+    }
+
     public String getName() {
         return project.getName();
     }

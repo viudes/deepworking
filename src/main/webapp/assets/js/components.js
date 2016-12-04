@@ -1,6 +1,71 @@
 var deepworking = {};
 
 (function() {
+
+  deepworking.datePicker = {
+
+    init: function($input) {
+
+      $('#date').datepicker({
+        format: "dd/mm/yyyy",
+        titleFormat: "MM yyyy"
+      }).on('changeDate', function(evt) {
+        $('.datepicker-dropdown').hide();
+      });
+
+      $input.timepicker();
+    }
+
+  };
+
+  /** typeahead wrapper component **/
+  deepworking.typeahead = {
+    options: {
+      dataSourceUri: null
+    },
+
+    init: function($typeAheadElement, options) {
+      var self = this;
+
+      $.extend(this.options, options);
+
+      $.ajax(self.options.dataSourceUri)
+        .done(function(data) {
+          $typeAheadElement.typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 2
+          }, {
+            source: self._substringMatcher(data)
+          });
+        });
+    },
+
+    _substringMatcher: function(items) {
+      return function findMatches(q, cb) {
+        var matches, substringRegex;
+
+        // an array that will be populated with substring matches
+        matches = [];
+
+        // regex used to determine if a string contains the substring `q`
+        substrRegex = new RegExp(q, 'i');
+
+        // iterate through the pool of strings and for any string that
+        // contains the substring `q`, add it to the `matches` array
+        $.each(items, function(i, item) {
+          var str = item.name;
+          if (substrRegex.test(str)) {
+            matches.push(str);
+          }
+        });
+
+        cb(matches);
+      };
+    }
+  };
+
+  /** smartlist component */
   deepworking.smartList = {
     options: {
       container: null,

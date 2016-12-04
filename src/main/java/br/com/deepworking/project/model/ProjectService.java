@@ -18,6 +18,15 @@ public class ProjectService {
         projectFolder.save(project);
     }
 
+    public Project findProjectBy(Integer projectId) {
+        return projectFolder.findById(projectId);
+    }
+
+    public Collection<ActivityType> getActivityTypes(Integer projectId) {
+        Project project = projectFolder.findById(projectId);
+        return project.getActivityTypes();
+    }
+
     public Collection<Project> getAll() {
         List<Project> projects = new ArrayList<>();
 

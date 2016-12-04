@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+
     <smart:bower_css path="bootstrap/dist/css/bootstrap.css" />
     <smart:bower_css path="bootstrap/dist/css/bootstrap-theme.css" />
     <smart:bower_css path="bootstrap-datepicker/dist/css/bootstrap-datepicker.css" />
@@ -31,18 +36,20 @@
 </head>
 
 <body>
+    <input type="hidden" id="projectId" value="${projectId}"/>
+
   <div class="container">
 
     <div class="page-header">
-        <h1>Livro de OAuth <small>Register an activity entry</small></h1>
+        <h1>${projectName} <small>Register an activity entry</small></h1>
     </div>
 
-    <form>
+    <form action="/project/${projectId}/activity" method="post">
       <div class="row">
           <div class="form-group col-lg-2">
               <label for="date">Date</label>
               <div id="date" class="input-group date">
-                  <input type="text" class="form-control" placeholder="Date of work"/>
+                  <input name="date" type="text" class="form-control" placeholder="Date of work"/>
                   <span class="input-group-addon add-on">
                     <span class="glyphicon glyphicon-calendar"/>
                   </span>
@@ -51,7 +58,7 @@
           <div class="col-lg-2">
               <label for="activityType">Activity type</label>
               <div class="form-group">
-                <input id="activityType" class="typeahead form-control" type="text" placeholder="Type of activity"/>
+                <input name="activityType" id="activityType" class="typeahead form-control" type="text" placeholder="Type of activity"/>
               </div>
           </div>
       </div>
@@ -71,7 +78,7 @@
           <div class="col-lg-2">
               <dl>
                   <dt><label for="amountHours">Amount of time</label></dt>
-                  <dd><input class="form-control" type="text" id="amountHours" placeholder="Minutes spent"/></dd>
+                  <dd><input name="amountHours" class="form-control" type="text" id="amountHours" placeholder="Minutes spent"/></dd>
               </dl>
           </div>
       </div>
@@ -80,7 +87,7 @@
         <div class="col-lg-6">
             <dl>
                 <dt><label for="description">Description</label>
-                <dd><input class="form-control" type="text" id="description" placeholder="Type in few words some details about this activity"></dd>
+                <dd><input class="form-control" type="text" name="description" id="description" placeholder="Type in few words some details about this activity"></dd>
             </dl>
         </div>
       </div>
@@ -88,7 +95,7 @@
       <div id="actions" class="row">
         <div class="col-md-12">
           <button type="submit" class="btn btn-primary">Save</button>
-          <a href="<c:url value='/project/1'/>" class="btn btn-default">Cancel</a>
+          <a href="<c:url value='/project/${projectId}'/>" class="btn btn-default">Cancel</a>
         </div>
       </div>
 
@@ -105,49 +112,15 @@
 <smart:bower_js path="bootstrap-datepicker/dist/js/bootstrap-datepicker.js" />
 <smart:bower_js path="bootstrap-timepicker/js/bootstrap-timepicker.js" />
 
+<script type="text/javascript" src="/assets/js/components.js"></script>
+
 <script type="text/javascript">
-  $(function() {
-      $('#date').datepicker({
-          format: "dd/mm/yyyy",
-          titleFormat: "MM yyyy"
-      }).on('changeDate', function(evt) {
-          $('.datepicker-dropdown').hide();
-      });
+  var projectId = $('#projectId').val();
+
+  deepworking.datePicker.init($('.input-timepicker'));
+
+  deepworking.typeahead.init($("#activityType"), {
+      dataSourceUri: '/project/' + projectId + '/activityTypes'
   });
-
-  $('.input-timepicker').timepicker();
-
-  var substringMatcher = function(strs) {
-    return function findMatches(q, cb) {
-      var matches, substringRegex;
-
-      // an array that will be populated with substring matches
-      matches = [];
-
-      // regex used to determine if a string contains the substring `q`
-      substrRegex = new RegExp(q, 'i');
-
-      // iterate through the pool of strings and for any string that
-      // contains the substring `q`, add it to the `matches` array
-      $.each(strs, function(i, str) {
-        if (substrRegex.test(str)) {
-          matches.push(str);
-        }
-      });
-
-      cb(matches);
-    };
-  };
-  var activityTypes = ['Leitura', 'Pesquisa', 'Escrita', 'Estrutra'];
-
-  $("#activityType").typeahead({
-    hint: true,
-    highlight: true,
-    minLength: 2
-  }, {
-    name: 'activityTypes',
-    source: substringMatcher(activityTypes)
-  });
-
 </script>
 </html>

@@ -52,7 +52,7 @@
         <smart:forEach items="${projects}" var="project">
             <tr>
                 <td>
-                   <a class="details" href="<c:url value='/project/1'/>">
+                   <a class="details" href="<c:url value='/project/${project.id}'/>">
                       <span class="glyphicon glyphicon-zoom-in"></span>
                    </a>
                 </td>
