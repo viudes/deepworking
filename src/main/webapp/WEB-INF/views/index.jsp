@@ -44,9 +44,9 @@
 
     <table class="table">
         <tr>
-            <td></td>
-            <td>Project</td>
-            <td>Activities</td>
+            <td class="col-md-1">Details</td>
+            <td class="col-md-2">Project</td>
+            <td class="col-md-8">Activity types</td>
         </tr>
 
         <smart:forEach items="${projects}" var="project">

@@ -9,6 +9,8 @@ var deepworking = {};
       allowDelete: false
     },
 
+    model: [],
+
     create: function(options) {
       $.extend(this.options, options);
       var self = this;
@@ -37,20 +39,23 @@ var deepworking = {};
         }
 
         // add hidden fields for each input entry
-        var $hiddenName = $('<input>'),
-            $hiddenDescription = $('<input>');
+        self._addEntry($inputName.val(), $inputDesc.val(), function(entry) {
+          var $hiddenName = $('<input>'),
+              $hiddenDescription = $('<input>');
 
-        $hiddenName.prop('type', 'hidden')
-          .prop('name', 'activityName')
-          .val($inputName.val());
+          $hiddenName.prop('type', 'hidden')
+            .prop('name', 'activityTypes[' + entry.getIndex() + '].name')
+            .val(entry.getName());
 
-        $hiddenDescription.prop('type', 'hidden')
-          .prop('name', 'activityDescription')
-          .val($inputDesc.val());
+          $hiddenDescription.prop('type', 'hidden')
+            .prop('name', 'activityTypes[' + entry.getIndex() + '].description')
+            .val(entry.getDescription());
 
-        $hiddenName.appendTo(self.options.container);
-        $hiddenDescription.appendTo(self.options.container);
+          $hiddenName.appendTo(self.options.container);
+          $hiddenDescription.appendTo(self.options.container);
+        });
 
+        // clear
         $inputName.val('');
         $inputDesc.val('');
         $inputName.focus();
@@ -69,6 +74,32 @@ var deepworking = {};
       $button.addClass('btn').addClass('btn-danger');
       $button.text('Delete');
       return $button;
+    },
+
+    _addEntry: function(name, description, updateView) {
+        var self = this,
+            entry = {
+              _index: -1,
+              _name: name,
+              _description: description,
+              getIndex: function() { return this._index; },
+              getName: function() { return this._name; },
+              getDescription: function() { return this._description; },
+              updateIndex: function() {
+                  var i=0, max = -1;
+                  for (i=0; i<self.model.length; i++) {
+                    if (self.model[i].getIndex() > max) {
+                      max = self.model[i].getIndex();
+                    }
+                  }
+                  this._index = max + 1;
+              }
+            };
+
+        entry.updateIndex()
+        self.model.push(entry);
+
+        updateView(entry);
     },
 
   };

@@ -1,49 +1,51 @@
 package br.com.deepworking.project.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.deepworking.project.model.Project;
+import br.com.deepworking.project.model.ProjectService;
+import br.com.deepworking.project.web.converter.ProjectEntryToProjectConverter;
+import br.com.deepworking.project.web.view.ProjectEntry;
 
 @Controller
 @RequestMapping("/project")
 public class ProjectController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView listAll() {
-        Project project = new Project("Livro de OAuth");
-        project.addActivityType("Organização");
-        project.addActivityType("Pesquisa");
+    @Autowired
+    private ProjectEntryToProjectConverter converter;
 
-        List<Project> projects = new ArrayList<>();
-        projects.add(project);
+    @Autowired
+    private ProjectService projectService;
 
-        ModelAndView mv = new ModelAndView("project/list_projects");
-        mv.addObject("projects", projects);
-
-        return mv;
-    }
-
-    @RequestMapping(value = "/{projectId}", method = RequestMethod.GET)
+    @GetMapping("/{projectId}")
     public ModelAndView details(@PathVariable String projectId) {
         return new ModelAndView("project/project_details");
     }
 
-    @RequestMapping(value = "new", method = RequestMethod.GET)
-    public ModelAndView newProject(Project project) {
-        return form("project/new_project", project);
+    @GetMapping("new")
+    public ModelAndView newProject(ProjectEntry projectEntry) {
+        return form("project/new_project", projectEntry);
     }
 
-    private ModelAndView form(String path, Project project) {
+    private ModelAndView form(String path, ProjectEntry project) {
         ModelAndView mv = new ModelAndView(path);
-        mv.addObject("project", project);
+        mv.addObject("projectEntry", project);
         return mv;
+    }
+
+    @PostMapping("save")
+    public ModelAndView save(ProjectEntry projectEntry) {
+        Project project = converter.convert(projectEntry);
+
+        projectService.addProjectToFolder(project);
+
+        return new ModelAndView("redirect:/");
     }
 
 }

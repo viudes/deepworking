@@ -21,4 +21,5 @@ public class ProjectViewPresenter {
             .map((type) -> type.getName())
             .collect(Collectors.joining(", "));
     }
+
 }

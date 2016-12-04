@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Project {
 
     private String name;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.PERSIST)
     private Set<ActivityType> activityTypes = new HashSet<>();
 
     @Deprecated
@@ -45,8 +46,9 @@ public class Project {
         return Collections.unmodifiableCollection(activityTypes);
     }
 
-    public void addActivityType(String name) {
+    public void addActivityType(String name, String description) {
         ActivityType activityType = new ActivityType(name);
+        activityType.setDescription(description);
         activityType.setProject(this);
 
         this.activityTypes.add(activityType);

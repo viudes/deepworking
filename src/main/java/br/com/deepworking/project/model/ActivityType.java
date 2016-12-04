@@ -57,8 +57,7 @@ public class ActivityType {
 
     @Override
     public String toString() {
-        return "ActivityType [id=" + id + ", name=" + name + ", description=" + description + ", project=" + project
-                + "]";
+        return "ActivityType [id=" + id + ", name=" + name + ", description=" + description + "]";
     }
 
 }

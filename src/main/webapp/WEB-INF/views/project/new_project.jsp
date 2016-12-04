@@ -11,6 +11,11 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+
 <title>Project</title>
 
 <smart:bower_css path="bootstrap/dist/css/bootstrap.css" />
@@ -23,9 +28,9 @@
   <div class="container">
     <h1>Create your project</h1>
 
-    <form:form method="post" commandName="project" action="">
+    <form:form method="post" action="${spring:mvcUrl('PC#save').build()}" modelAttribute="projectEntry">
 
-    <form:hidden path="id" />
+      <form:hidden path="id" />
 
       <div class="panel panel-default">
         <div class="panel-body">
