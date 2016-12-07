@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.deepworking.project.model.Project;
-import br.com.deepworking.project.model.ProjectService;
-import br.com.deepworking.project.web.converter.ProjectEntryToProjectConverter;
-import br.com.deepworking.project.web.view.ProjectEntry;
+import br.com.deepworking.project.model.ProjectFolder;
+import br.com.deepworking.project.model.factory.ProjectEntryToProjectFactory;
+import br.com.deepworking.project.model.transfer.ProjectEntry;
 
 @Controller
 @RequestMapping("/project")
 public class ProjectController {
 
     @Autowired
-    private ProjectEntryToProjectConverter converter;
+    private ProjectEntryToProjectFactory projectFactory;
 
     @Autowired
-    private ProjectService projectService;
+    private ProjectFolder projectFolder;
 
     @GetMapping("/{projectId}")
     public ModelAndView details(@PathVariable Integer projectId) {
         ModelAndView mv = new ModelAndView("project/project_details");
 
-        Project project = projectService.findProjectBy(projectId);
+        Project project = projectFolder.findProjectById(projectId).get();
 
         mv.addObject("projectId", projectId);
         mv.addObject("projectName", project.getName());
@@ -48,9 +48,9 @@ public class ProjectController {
 
     @PostMapping("save")
     public ModelAndView save(ProjectEntry projectEntry) {
-        Project project = converter.convert(projectEntry);
+        Project project = projectFactory.createFrom(projectEntry);
 
-        projectService.addProjectToFolder(project);
+        projectFolder.addProjectToFolder(project);
 
         return new ModelAndView("redirect:/");
     }

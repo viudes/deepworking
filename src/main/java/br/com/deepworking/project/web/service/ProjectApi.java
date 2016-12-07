@@ -12,19 +12,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.deepworking.project.model.ActivityType;
-import br.com.deepworking.project.model.ProjectService;
+import br.com.deepworking.project.model.ProjectFolder;
 
 @RestController
 @RequestMapping("/project")
 public class ProjectApi {
 
     @Autowired
-    private ProjectService projectService;
+    private ProjectFolder projectFolder;
 
     @GetMapping("{projectId}/activityTypes")
     public Collection<ActivityTypeTO> activityTypes(@PathVariable("projectId") Integer projectId) {
 
-        Collection<ActivityType> activityTypes = projectService.getActivityTypes(projectId);
+        Collection<ActivityType> activityTypes = projectFolder
+                .findProjectById(projectId)
+                .getActivityTypes();
 
         return activityTypes.stream()
             .map(a -> new ActivityTypeTO(a.getName()))

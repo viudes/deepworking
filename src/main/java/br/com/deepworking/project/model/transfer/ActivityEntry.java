@@ -1,22 +1,43 @@
-package br.com.deepworking.project.web.view;
+package br.com.deepworking.project.model.transfer;
+
+import java.util.Date;
+
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class ActivityEntry {
 
-    private String date;
+    private int projectId;
 
+    @NotNull
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date date;
+
+    @NotNull
     private String activityType;
 
+    @NotNull
     private String startTime;
 
+    @NotNull
     private int amountHours;
 
     private String description;
 
-    public String getDate() {
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
+
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -36,7 +57,7 @@ public class ActivityEntry {
         this.startTime = startTime;
     }
 
-    public int getAmountHours() {
+    public int getAmountTimeInMinutes() {
         return amountHours;
     }
 
@@ -54,8 +75,8 @@ public class ActivityEntry {
 
     @Override
     public String toString() {
-        return "ActivityEntry [date=" + date + ", activityType=" + activityType + ", startTime=" + startTime
-                + ", amountHours=" + amountHours + ", description=" + description + "]";
+        return "ActivityEntry [projectId=" + projectId + ", date=" + date + ", activityType=" + activityType
+                + ", startTime=" + startTime + ", amountHours=" + amountHours + ", description=" + description + "]";
     }
 
 }

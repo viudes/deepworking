@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.deepworking.project.model.Project;
-import br.com.deepworking.project.model.ProjectService;
+import br.com.deepworking.project.model.ProjectFolder;
 import br.com.deepworking.project.web.view.ProjectViewPresenter;
 
 @Controller
@@ -23,7 +23,7 @@ import br.com.deepworking.project.web.view.ProjectViewPresenter;
 public class Application {
 
     @Autowired
-    private ProjectService projectService;
+    private ProjectFolder projectFolder;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -31,7 +31,7 @@ public class Application {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
-        Collection<Project> projects = projectService.getAll();
+        Collection<Project> projects = projectFolder.getAllProjects();
 
         List<ProjectViewPresenter> projectsPresenter = new ArrayList<>();
         projects.forEach(p -> projectsPresenter.add(new ProjectViewPresenter(p)));

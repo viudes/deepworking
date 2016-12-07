@@ -3,6 +3,7 @@ package br.com.deepworking.project.model;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -52,6 +53,12 @@ public class Project {
         activityType.setProject(this);
 
         this.activityTypes.add(activityType);
+    }
+
+    public Optional<ActivityType> findBy(String name) {
+        return activityTypes.stream()
+                .filter(a -> a.getName().equals(name))
+                .findFirst();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package br.com.deepworking.project.web.view;
+package br.com.deepworking.project.model.transfer;
 
 import java.util.ArrayList;
 import java.util.List;

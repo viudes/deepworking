@@ -36,7 +36,6 @@
 </head>
 
 <body>
-    <input type="hidden" id="projectId" value="${projectId}"/>
 
   <div class="container">
 
@@ -45,6 +44,7 @@
     </div>
 
     <form action="/project/${projectId}/activity" method="post">
+      <input type="hidden" id="projectId" value="${projectId}"/>
       <div class="row">
           <div class="form-group col-lg-2">
               <label for="date">Date</label>
@@ -117,7 +117,9 @@
 <script type="text/javascript">
   var projectId = $('#projectId').val();
 
-  deepworking.datePicker.init($('.input-timepicker'));
+  deepworking.timePicker.init($('.input-timepicker'));
+
+  deepworking.datePicker.init($('#date'));
 
   deepworking.typeahead.init($("#activityType"), {
       dataSourceUri: '/project/' + projectId + '/activityTypes'

@@ -17,6 +17,7 @@ public class OffsetDateTimeConverter implements AttributeConverter<OffsetDateTim
 
     @Override
     public Date convertToDatabaseColumn(OffsetDateTime attribute) {
+
         return attribute == null ? null : Date.from(attribute.toInstant());
     }
 

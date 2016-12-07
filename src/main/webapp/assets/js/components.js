@@ -2,18 +2,27 @@ var deepworking = {};
 
 (function() {
 
+  deepworking.timePicker = {
+    init: function($input) {
+       $input.timepicker({
+         showMeridian: false,
+         showSeconds: true
+       });
+    }
+  };
+
   deepworking.datePicker = {
 
-    init: function($input) {
+    init: function($date) {
 
-      $('#date').datepicker({
+      $date.datepicker({
         format: "dd/mm/yyyy",
         titleFormat: "MM yyyy"
       }).on('changeDate', function(evt) {
         $('.datepicker-dropdown').hide();
       });
 
-      $input.timepicker();
+
     }
 
   };

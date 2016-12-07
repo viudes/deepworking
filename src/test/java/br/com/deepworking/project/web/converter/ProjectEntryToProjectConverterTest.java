@@ -7,17 +7,18 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import br.com.deepworking.project.model.Project;
-import br.com.deepworking.project.web.view.ProjectEntry;
-import br.com.deepworking.project.web.view.ProjectEntry.ActivityTypeEntry;
+import br.com.deepworking.project.model.factory.ProjectEntryToProjectFactory;
+import br.com.deepworking.project.model.transfer.ProjectEntry;
+import br.com.deepworking.project.model.transfer.ProjectEntry.ActivityTypeEntry;
 
 public class ProjectEntryToProjectConverterTest {
 
     @Test
     public void shouldConvertFromProjectEntryToProject() {
-        ProjectEntryToProjectConverter converter = new ProjectEntryToProjectConverter();
+        ProjectEntryToProjectFactory converter = new ProjectEntryToProjectFactory();
 
         ProjectEntry source = createProjectEntryAsSource();
-        Project project = converter.convert(source);
+        Project project = converter.createFrom(source);
 
         assertEquals(source.getName(), project.getName());
         assertEquals(source.getActivityTypes().size(), project.getActivityTypes().size());

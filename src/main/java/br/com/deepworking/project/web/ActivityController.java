@@ -1,5 +1,7 @@
 package br.com.deepworking.project.web;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,21 +10,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.deepworking.project.model.Activity;
 import br.com.deepworking.project.model.Project;
-import br.com.deepworking.project.model.ProjectService;
-import br.com.deepworking.project.web.view.ActivityEntry;
+import br.com.deepworking.project.model.ProjectFolder;
+import br.com.deepworking.project.model.factory.ActivityEntryFactory;
+import br.com.deepworking.project.model.transfer.ActivityEntry;
 
 @Controller
 @RequestMapping("/project/{projectId}/activity")
 public class ActivityController {
 
     @Autowired
-    private ProjectService projectService;
+    private ProjectFolder projectFolder;
+
+    @Autowired
+    private ActivityEntryFactory activityEntryFactory;
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public ModelAndView newActivity(@PathVariable Integer projectId) {
         ModelAndView mv = new ModelAndView("project/activity/new_activity");
-        Project project = projectService.findProjectBy(projectId);
+        Project project = projectFolder.findProjectById(projectId).get();
 
         mv.addObject("projectId", projectId);
         mv.addObject("projectName", project.getName());
@@ -43,10 +50,14 @@ public class ActivityController {
     }
 
     @PostMapping
-    public ModelAndView save(@PathVariable Integer projectId, ActivityEntry activityEntry) {
+    public ModelAndView save(@PathVariable Integer projectId, @Valid ActivityEntry activityEntry) {
+        Activity activity = activityEntryFactory.createFrom(activityEntry);
+
+        projectFolder
+            .findProjectById(projectId)
+            .addActivity(activity);
+
         ModelAndView mv = new ModelAndView("redirect:/project/" + projectId);
-        System.out.println(projectId);
-        System.out.println(activityEntry);
         return mv;
     }
 }
