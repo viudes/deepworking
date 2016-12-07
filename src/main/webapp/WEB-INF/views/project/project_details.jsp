@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://smart.com.br/tags" prefix="smart"%>
 
 <!DOCTYPE html>
@@ -40,9 +39,9 @@
 
     <div class="row">
         <div class="col-md-12">
-            <a href="<c:url value='/'/>" class="btn btn-default">Home</a>
-            <a href="<c:url value='/project/${projectId}/activity'/>" class="btn btn-default">Activities</a>
-            <a href="<c:url value='/project/${projectId}/activity/new'/>" class="btn btn-default">New activity</a>
+            <a href="/" class="btn btn-default">Home</a>
+            <a href="/project/${projectId}/activity" class="btn btn-default">Activities</a>
+            <a href="/project/${projectId}/activity/new" class="btn btn-default">New activity</a>
         </div>
     </div>
 

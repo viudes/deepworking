@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://smart.com.br/tags" prefix="smart"%>
 
 <!DOCTYPE html>
@@ -66,7 +65,7 @@
       <div id="actions" class="row">
         <div class="col-md-12">
            <button type="submit" class="btn btn-primary">Rate this activity</button>
-           <a href="<c:url value='/project/1/activity'/>" class="btn btn-default">Cancel</a>
+           <a href="/project/1/activity" class="btn btn-default">Cancel</a>
         </div>
       </div>
 
