@@ -7,8 +7,14 @@ logging:
     org.springframework.web: DEBUG
 
 # spring mvc
-spring.mvc.view.prefix: /WEB-INF/views/
-spring.mvc.view.suffix: .jsp
+spring.thymeleaf.cache: false
+spring.thymeleaf.check-template: true
+spring.thymeleaf.check-template-location: true
+spring.thymeleaf.content-type: text/html
+spring.thymeleaf.enabled: true
+spring.thymeleaf.encoding: UTF-8
+spring.thymeleaf.prefix: /WEB-INF/views/
+spring.thymeleaf.suffix: .html
 
 # jpa
 spring:

@@ -12,4 +12,6 @@ public interface ProjectActivities {
 
     Collection<ActivityType> getActivityTypes();
 
+    Collection<Activity> findActivities();
+
 }

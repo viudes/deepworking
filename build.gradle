@@ -28,17 +28,13 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-
     compile("org.postgresql:postgresql:9.4-1206-jdbc42")
-    compile("org.apache.tomcat.embed:tomcat-embed-jasper")
-    compile("javax.servlet:jstl")
     compile("org.apache.commons:commons-lang3:3.4")
 
     compile("org.springframework.boot:spring-boot-starter")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
-
-    compile("br.com.smart:smartview:0.0.1-SNAPSHOT")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")

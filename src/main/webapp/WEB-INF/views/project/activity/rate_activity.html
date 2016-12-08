@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://smart.com.br/tags" prefix="smart"%>
-
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <smart:bower_css path="bootstrap/dist/css/bootstrap.min.css" />
-    <smart:bower_css path="bootstrap/dist/css/bootstrap-theme.min.css" />
-    <smart:bower_css path="bootstrap-select/dist/css/bootstrap-select.min.css" />
+
+    <link th:href="@{/assets/bower_components/bootstrap/dist/css/bootstrap.css}"
+        href="../../../../assets/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <link th:href="@{/assets/bower_components/bootstrap/dist/css/bootstrap-theme.css}"
+        href="../../../../assets/bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+
+    <link th:href="@{/assets/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css}"
+        href="../../../../assets/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
 
     <style>
        .centerfy img {
@@ -28,7 +31,8 @@
   <div class="container">
 
     <div class="page-header">
-        <h1>Livro de OAuth <small>Rate write activity</small></h1>
+        <h1 th:text="${projectName}">Livro de OAuth</h1>
+        <h1><small>Rate write activity</small></h1>
     </div>
 
     <form>
@@ -65,7 +69,7 @@
       <div id="actions" class="row">
         <div class="col-md-12">
            <button type="submit" class="btn btn-primary">Rate this activity</button>
-           <a href="/project/1/activity" class="btn btn-default">Cancel</a>
+           <a href="list_activities.html" class="btn btn-default">Cancel</a>
         </div>
       </div>
 
@@ -74,9 +78,9 @@
   </div>
 </body>
 
-<smart:bower_js path="jquery/dist/jquery.js" />
-<smart:bower_js path="bootstrap/dist/js/bootstrap.js" />
-<smart:bower_js path="bootstrap-select/dist/js/bootstrap-select.min.js" />
+<script src="../../../../assets/bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
+<script src="../../../../assets/bower_components/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
+<script src="../../../../assets/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 $('.selectpicker').selectpicker({

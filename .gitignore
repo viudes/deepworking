@@ -9,3 +9,4 @@ src/main/webapp/assets/bower_components/
 src/main/webapp/assets/node_modules/
 .idea/
 *.iml
+*.DS_Store

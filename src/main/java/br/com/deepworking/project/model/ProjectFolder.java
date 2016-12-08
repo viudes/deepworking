@@ -76,6 +76,11 @@ public class ProjectFolder {
             return project.getActivityTypes();
         }
 
+        @Override
+        public Collection<Activity> findActivities() {
+            return Collections.unmodifiableCollection(activityRepository.findAllByOrderByStartTimeAsc());
+        }
+
     }
 
 }

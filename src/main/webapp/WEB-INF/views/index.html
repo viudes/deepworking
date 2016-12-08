@@ -1,18 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://smart.com.br/tags" prefix="smart"%>
-
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="cache-control" content="max-age=0" />
     <meta http-equiv="cache-control" content="no-cache" />
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="pragma" content="no-cache" />
 
-    <smart:bower_css path="bootstrap/dist/css/bootstrap.css" />
-    <smart:bower_css path="bootstrap/dist/css/bootstrap-theme.css" />
+    <link th:href="@{/assets/bower_components/bootstrap/dist/css/bootstrap.css}"
+          href="../../assets/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <link th:href="@{/assets/bower_components/bootstrap/dist/css/bootstrap-theme.css}"
+        href="../../assets/bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
 
     <style>
        .centerfy img {
@@ -38,7 +36,8 @@
       <p class="lead">Create a new project and start monitoring your
         progress discovering better approach when working</p>
       <p>
-        <a class="btn btn-lg btn-success" href="/project/new" role="button">Create a new project</a>
+        <a class="btn btn-lg btn-success" th:href="@{/project/new}"
+            href="project/new_project.html" role="button">Create a new project</a>
       </p>
     </div>
 
@@ -49,17 +48,15 @@
             <td class="col-md-8">Activity types</td>
         </tr>
 
-        <smart:forEach items="${projects}" var="project">
-            <tr>
-                <td>
-                   <a class="details" href="<c:url value='/project/${project.id}'/>">
-                      <span class="glyphicon glyphicon-zoom-in"></span>
-                   </a>
-                </td>
-                <td>${project.name}</td>
-                <td>${project.activityTypes}</td>
-            </tr>
-        </smart:forEach>
+        <tr th:each="project : ${projects}">
+            <td>
+               <a class="details" th:href="@{/project/{id}(id=${project.id})}" href="project/project_details.html">
+                  <span class="glyphicon glyphicon-zoom-in"></span>
+               </a>
+            </td>
+            <td th:text="${project.name}">Projecto A</td>
+            <td th:text="${project.activityTypes}">Escrever, Estudar, Pesquisa</td>
+        </tr>
 
     </table>
 

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="pragma" content="no-cache" />
+
+  <title>Project</title>
+
+  <link th:href="@{/assets/bower_components/bootstrap/dist/css/bootstrap.css}"
+          href="../../../assets/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+  <link th:href="@{/assets/bootstrap-tagsinput/dist/bootstrap-tagsinput.css}"
+        href="../../../assets/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" />
+
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Create your project</h1>
+
+    <form method="post" th:action="${(#mvc.url('PC#save')).build()}" th:object="${projectEntry}">
+
+      <input type="hidden" th:field="*{id}" />
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="form-group col-md-3">
+                <input class="form-control" placeholder="Project name" th:field="*{name}" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Activities definitions</div>
+        <div class="panel-body activityList">
+
+          <div class="row activity-container">
+            <div class="col-md-2">
+              <input type="text" class="form-control inputRowName" placeholder="Name" />
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control inputRowDescription" placeholder="Description" />
+            </div>
+            <div class="col-md-2">
+                <a href="#" class="btn btn-info" id="add_activity">Add</a>
+            </div>
+          </div>
+
+          <div class="row activityRow">
+              <br/>
+              <div class="col-md-2 name">
+              </div>
+              <div class="col-md-6 description">
+              </div>
+              <div class="col-md-2 deleteBox">
+              </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="actions" class="row">
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <a th:href="@{/}" href="../index.html" class="btn btn-default">Cancel</a>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</body>
+
+<script th:src="@{/assets/bower_components/jquery/dist/jquery.js}"
+    src="../../../assets/bower_components/jquery/dist/jquery.js"></script>
+
+<script th:src="@{/assets/bower_components/vanilla-masker/lib/vanilla-masker.js}"
+    src="../../../assets/bower_components/vanilla-masker/lib/vanilla-masker.js"></script>
+
+<script th:src="@{/assets/bower_components/bootstrap/dist/js/bootstrap.js}"
+    src="../../../assets/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+<script th:src="@{/assets/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js}"
+    src="../../../assets/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
+
+
+<script th:src="@{/assets/js/components.js}"
+    src="../../../assets/js/components.js"></script>
+
+<script type="text/javascript">
+deepworking.smartList.create({
+    container: '.activityList',
+    row: '.activityRow',
+    allowDelete: true,
+    addButton: '#add_activity'
+});
+</script>
+
+</html>

@@ -21,7 +21,7 @@ public class ActivityEntry {
     private String startTime;
 
     @NotNull
-    private int amountHours;
+    private int amountTimeInMinutes;
 
     private String description;
 
@@ -58,11 +58,11 @@ public class ActivityEntry {
     }
 
     public int getAmountTimeInMinutes() {
-        return amountHours;
+        return amountTimeInMinutes;
     }
 
-    public void setAmountHours(int amountHours) {
-        this.amountHours = amountHours;
+    public void setAmountTimeInMinutes(int amountTimeInMinutes) {
+        this.amountTimeInMinutes = amountTimeInMinutes;
     }
 
     public String getDescription() {
@@ -76,7 +76,7 @@ public class ActivityEntry {
     @Override
     public String toString() {
         return "ActivityEntry [projectId=" + projectId + ", date=" + date + ", activityType=" + activityType
-                + ", startTime=" + startTime + ", amountHours=" + amountHours + ", description=" + description + "]";
+                + ", startTime=" + startTime + ", amountHours=" + amountTimeInMinutes + ", description=" + description + "]";
     }
 
 }
