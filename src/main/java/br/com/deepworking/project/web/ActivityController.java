@@ -17,6 +17,7 @@ import br.com.deepworking.project.model.Project;
 import br.com.deepworking.project.model.ProjectFolder;
 import br.com.deepworking.project.model.factory.ActivityEntryFactory;
 import br.com.deepworking.project.model.transfer.ActivityEntry;
+import br.com.deepworking.project.web.view.ActivitiesViewPresenter;
 
 @Controller
 @RequestMapping("/project/{projectId}/activity")
@@ -48,9 +49,11 @@ public class ActivityController {
             .findProjectById(projectId)
             .findActivities();
 
+        ActivitiesViewPresenter presenter = new ActivitiesViewPresenter(activities);
+
         mv.addObject("projectName", projectFolder.findProjectById(projectId).get().getName());
         mv.addObject("projectId", projectId);
-        mv.addObject("activities", activities);
+        mv.addObject("activities", presenter);
         return mv;
     }
 
