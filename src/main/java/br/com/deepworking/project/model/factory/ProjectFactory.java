@@ -6,7 +6,7 @@ import br.com.deepworking.project.model.Project;
 import br.com.deepworking.project.model.transfer.ProjectEntry;
 
 @Component
-public class ProjectEntryToProjectFactory {
+public class ProjectFactory {
 
     public Project createFrom(ProjectEntry source) {
         Project project = new Project(source.getName());

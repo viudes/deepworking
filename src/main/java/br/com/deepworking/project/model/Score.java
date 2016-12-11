@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Score {
@@ -15,10 +18,13 @@ public class Score {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "scoreSeq")
     private Integer id;
 
+    @NotNull
     private ScorePoint points;
 
+    @Min(0)
     private int interruptions;
 
+    @Size(min = 0, max = 255)
     private String notes;
 
     @OneToOne

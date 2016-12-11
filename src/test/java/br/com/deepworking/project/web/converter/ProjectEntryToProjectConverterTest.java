@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import br.com.deepworking.project.model.Project;
-import br.com.deepworking.project.model.factory.ProjectEntryToProjectFactory;
+import br.com.deepworking.project.model.factory.ProjectFactory;
 import br.com.deepworking.project.model.transfer.ProjectEntry;
 import br.com.deepworking.project.model.transfer.ProjectEntry.ActivityTypeEntry;
 
@@ -15,7 +15,7 @@ public class ProjectEntryToProjectConverterTest {
 
     @Test
     public void shouldConvertFromProjectEntryToProject() {
-        ProjectEntryToProjectFactory converter = new ProjectEntryToProjectFactory();
+        ProjectFactory converter = new ProjectFactory();
 
         ProjectEntry source = createProjectEntryAsSource();
         Project project = converter.createFrom(source);

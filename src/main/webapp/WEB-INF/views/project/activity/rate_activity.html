@@ -35,13 +35,14 @@
         <h1><small>Rate write activity</small></h1>
     </div>
 
-    <form>
+    <form method="post" th:action="${(#mvc.url('RC#applyRating').arg(0, projectId).arg(1, activityId)).build()}" th:object="${rating}">
+      <input type="hidden" th:value="*{activityId}" />
       <div class="row">
          <div class="col-md-3">
             <dl>
               <dt><label for="rateScore">Score</label></dt>
               <dd>
-              <select class="selectpicker" id="rateScore">
+              <select class="selectpicker" id="rateScore" th:field="*{scorePoint}">
                   <option value="10">Good</option>
                   <option value="5">Regular</option>
                   <option value="1">Bad</option>
@@ -52,8 +53,10 @@
         <div class="col-lg-3">
             <dl>
                 <dt><label for="interruptionOccurrences">Interruption occurrences</label></dt>
-                <dd><input class="form-control" type="text" id="interruptionOcurrences" placeholder="How many times of interruption"/></dd>
+                <dd><input class="form-control" th:field="*{interruptions}"
+                    type="text" id="interruptionOcurrences" placeholder="How many times of interruption"/></dd>
             </dl>
+            <div th:if="${#fields.hasErrors('interruptions')}" th:errors="*{interruptions}"></div>
         </div>
       </div>
 
@@ -61,15 +64,18 @@
           <div class="col-lg-8">
               <dl>
                   <dt><label for="notes">Notes</label></dt>
-                  <dd><input class="form-control" type="text" id="notes" placeholder="Notes about your interruption"/></dd>
+                  <dd><input class="form-control" type="text" th:field="*{notes}"
+                    id="notes" placeholder="Notes about your interruption"/></dd>
               </dl>
+              <div th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></div>
           </div>
       </div>
 
       <div id="actions" class="row">
         <div class="col-md-12">
            <button type="submit" class="btn btn-primary">Rate this activity</button>
-           <a href="list_activities.html" class="btn btn-default">Cancel</a>
+           <a class="btn btn-default" th:href="@{/project/{projectId}/activity(projectId=${projectId})}"
+                href="list_activities.html">Cancel</a>
         </div>
       </div>
 

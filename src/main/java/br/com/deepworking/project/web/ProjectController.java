@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.deepworking.project.model.Project;
 import br.com.deepworking.project.model.ProjectFolder;
-import br.com.deepworking.project.model.factory.ProjectEntryToProjectFactory;
+import br.com.deepworking.project.model.factory.ProjectFactory;
 import br.com.deepworking.project.model.transfer.ProjectEntry;
 
 @Controller
@@ -18,7 +18,7 @@ import br.com.deepworking.project.model.transfer.ProjectEntry;
 public class ProjectController {
 
     @Autowired
-    private ProjectEntryToProjectFactory projectFactory;
+    private ProjectFactory projectFactory;
 
     @Autowired
     private ProjectFolder projectFolder;

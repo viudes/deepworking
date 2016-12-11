@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.deepworking.project.model.Activity;
 import br.com.deepworking.project.model.Project;
 import br.com.deepworking.project.model.ProjectFolder;
-import br.com.deepworking.project.model.factory.ActivityEntryFactory;
+import br.com.deepworking.project.model.factory.ActivityFactory;
 import br.com.deepworking.project.model.transfer.ActivityEntry;
 import br.com.deepworking.project.web.view.ActivitiesViewPresenter;
 
@@ -28,7 +28,7 @@ public class ActivityController {
     private ProjectFolder projectFolder;
 
     @Autowired
-    private ActivityEntryFactory activityEntryFactory;
+    private ActivityFactory activityEntryFactory;
 
     @GetMapping(value = "/new")
     public ModelAndView newActivity(@PathVariable Integer projectId, ActivityEntry activityEntry) {
@@ -55,12 +55,6 @@ public class ActivityController {
         mv.addObject("projectName", projectFolder.findProjectById(projectId).get().getName());
         mv.addObject("projectId", projectId);
         mv.addObject("activities", presenter);
-        return mv;
-    }
-
-    @GetMapping(value = "/{activityId}/rate")
-    public ModelAndView rateActivity(@PathVariable Integer projectId, @PathVariable Integer activityId) {
-        ModelAndView mv = new ModelAndView("project/activity/rate_activity");
         return mv;
     }
 

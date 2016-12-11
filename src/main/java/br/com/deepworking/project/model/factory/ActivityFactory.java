@@ -13,7 +13,7 @@ import br.com.deepworking.project.model.transfer.ActivityEntry;
 import br.com.deepworking.util.DateUtils;
 
 @Component
-public class ActivityEntryFactory {
+public class ActivityFactory {
 
     @Autowired
     private ProjectFolder projectFolder;
