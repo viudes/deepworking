@@ -1,5 +1,7 @@
 package br.com.deepworking.project.web.view;
 
+import java.time.format.DateTimeFormatter;
+
 import br.com.deepworking.project.model.Activity;
 
 public class ActivityViewPresenter {
@@ -15,7 +17,7 @@ public class ActivityViewPresenter {
     }
 
     public String getStartDate() {
-        return null;
+        return activity.getStartTime().format(DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     public String getType() {
@@ -23,7 +25,7 @@ public class ActivityViewPresenter {
     }
 
     public String getStartTime() {
-        return null;
+        return activity.getStartTime().format(DateTimeFormatter.ISO_LOCAL_TIME);
     }
 
     public Integer getAmountInMinutes() {
@@ -53,6 +55,11 @@ public class ActivityViewPresenter {
 
         return interruptions;
     }
+
+    public boolean isRated() {
+        return activity.getScore() != null;
+    }
+
     @Override
     public String toString() {
         return "ActivityViewPresenter [activity=" + activity + "]";

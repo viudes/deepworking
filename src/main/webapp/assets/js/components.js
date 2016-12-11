@@ -43,7 +43,7 @@ var deepworking = {};
           $typeAheadElement.typeahead({
             hint: true,
             highlight: true,
-            minLength: 2
+            minLength: 1
           }, {
             source: self._substringMatcher(data)
           });
