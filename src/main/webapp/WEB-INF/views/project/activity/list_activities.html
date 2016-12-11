@@ -52,6 +52,7 @@
                     <th>Amount hours</th>
                     <th>Description</th>
                     <th>Score</th>
+                    <th>Interruptions</th>
                 </tr>
             </thead>
             <tbody th:remove="all-but-first">
@@ -67,7 +68,8 @@
                     <td th:text="${activity.startTime}">15:00</td>
                     <td th:text="${activity.amountInMinutes}">3</td>
                     <td th:text="${activity.description}">Researching about authentication</td>
-                    <td>Good</td>
+                    <td th:text="${activity.rating}">Good</td>
+                    <td th:text="${activity.interruptions}">0</td>
                 </tr>
 
                 <tr>
@@ -82,6 +84,7 @@
                     <td>3</td>
                     <td>reading, sketching, writing</td>
                     <td>Regular</td>
+                    <td>3</td>
                 </tr>
             </tbody>
           </table>

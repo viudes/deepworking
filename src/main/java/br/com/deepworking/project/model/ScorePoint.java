@@ -6,7 +6,7 @@ public enum ScorePoint {
 
     GOOD(10),
     REGULAR(5),
-    BAD(0);
+    BAD(1);
 
     private int point;
 

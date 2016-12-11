@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +42,7 @@ public class ActivityController {
         return mv;
     }
 
-    @GetMapping(value = "")
+    @GetMapping
     public ModelAndView listAll(@PathVariable Integer projectId) {
         ModelAndView mv = new ModelAndView("project/activity/list_activities");
 
@@ -64,7 +65,13 @@ public class ActivityController {
     }
 
     @PostMapping
-    public ModelAndView save(@PathVariable Integer projectId, @Valid ActivityEntry activityEntry) {
+    public ModelAndView save(@PathVariable Integer projectId, @Valid ActivityEntry activityEntry,
+            BindingResult bindingResult) {
+
+        if (bindingResult.hasFieldErrors()) {
+            return newActivity(projectId, activityEntry);
+        }
+
         Activity activity = activityEntryFactory.createFrom(activityEntry);
 
         projectFolder

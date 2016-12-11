@@ -78,7 +78,8 @@ public class ProjectFolder {
 
         @Override
         public Collection<Activity> findActivities() {
-            return Collections.unmodifiableCollection(activityRepository.findAllByOrderByStartTimeAsc());
+            return Collections.unmodifiableCollection(
+                    activityRepository.findByProjectOrderByStartTimeAsc(project));
         }
 
     }

@@ -34,6 +34,25 @@ public class ActivityViewPresenter {
         return activity.getDescription();
     }
 
+    public String getRating() {
+        String rating = "-";
+
+        if (activity.getScore() != null) {
+            rating = activity.getScore().getPoints().name();
+        }
+
+        return rating;
+    }
+
+    public int getInterruptions() {
+        int interruptions = 0;
+
+        if (activity.getScore() != null) {
+            interruptions = activity.getScore().getInterruptions();
+        }
+
+        return interruptions;
+    }
     @Override
     public String toString() {
         return "ActivityViewPresenter [activity=" + activity + "]";

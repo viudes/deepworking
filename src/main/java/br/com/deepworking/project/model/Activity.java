@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -28,6 +29,9 @@ public class Activity {
     private int amountTimeInMinutes;
 
     private String description;
+
+    @OneToOne(mappedBy = "activity")
+    private Score score;
 
     public Integer getId() {
         return id;
@@ -73,10 +77,19 @@ public class Activity {
         this.description = description;
     }
 
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
+    }
+
     @Override
     public String toString() {
         return "Activity [id=" + id + ", project=" + project + ", activityType=" + activityType + ", startTime="
-                + startTime + ", amountTimeInMinutes=" + amountTimeInMinutes + ", description=" + description + "]";
+                + startTime + ", amountTimeInMinutes=" + amountTimeInMinutes + ", description=" + description
+                + ", score=" + score + "]";
     }
 
 }

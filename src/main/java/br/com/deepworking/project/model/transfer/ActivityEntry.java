@@ -2,8 +2,10 @@ package br.com.deepworking.project.model.transfer;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class ActivityEntry {
@@ -14,13 +16,14 @@ public class ActivityEntry {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date date;
 
-    @NotNull
+    @NotBlank
     private String activityType;
 
     @NotNull
     private String startTime;
 
     @NotNull
+    @Min(value = 1)
     private int amountTimeInMinutes;
 
     private String description;
