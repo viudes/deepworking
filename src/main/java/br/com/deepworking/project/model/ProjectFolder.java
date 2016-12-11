@@ -9,20 +9,33 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.deepworking.project.model.exception.ResourceNotFoundException;
 import br.com.deepworking.project.model.repository.ActivityRepository;
 import br.com.deepworking.project.model.repository.ProjectRepository;
 
 @Component
 public class ProjectFolder {
 
-    @Autowired
     private ProjectRepository projectRepository;
 
-    @Autowired
     private ActivityRepository activityRepository;
+
+    @Autowired
+    void setProjectRepository(ProjectRepository projectRepository) {
+        this.projectRepository = projectRepository;
+    }
+
+    @Autowired
+    void setActivityRepository(ActivityRepository activityRepository) {
+        this.activityRepository = activityRepository;
+    }
 
     public ProjectActivities findProjectById(int projectId) {
         Project project = projectRepository.findById(projectId);
+
+        if (project == null) {
+            throw new ResourceNotFoundException();
+        }
 
         return new DefaultProjectActivities(project);
     }

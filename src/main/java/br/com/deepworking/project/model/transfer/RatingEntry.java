@@ -1,14 +1,22 @@
 package br.com.deepworking.project.model.transfer;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class RatingEntry {
 
+    @NotNull
     private Integer scorePoint;
 
+    @NotNull
+    @Min(0)
     private Integer interruptions;
 
+    @Size(min = 0, max = 255)
     private String notes;
 
+    @NotNull
     private Integer activityId;
 
     public Integer getScorePoint() {

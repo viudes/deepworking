@@ -1,5 +1,7 @@
 package br.com.deepworking.project.web;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -38,9 +40,9 @@ public class RateController {
 
     @PostMapping
     public ModelAndView applyRating(@PathVariable Integer projectId, @PathVariable Integer activityId,
-            RatingEntry rating, BindingResult bindingResult) {
+            @Valid RatingEntry rating, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasFieldErrors()) {
             return rateActivity(projectId, activityId, rating);
         }
 

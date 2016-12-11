@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+
+<link
+  th:href="@{/assets/bower_components/bootstrap/dist/css/bootstrap.css}"
+  href="../../assets/bower_components/bootstrap/dist/css/bootstrap.css"
+  rel="stylesheet" />
+
+<link
+  th:href="@{/assets/bower_components/bootstrap/dist/css/bootstrap-theme.css}"
+  href="../../assets/bower_components/bootstrap/dist/css/bootstrap-theme.css"
+  rel="stylesheet" />
+
+<style>
+.centerfy img {
+  margin: 0 auto;
+}
+
+.centerfy {
+  text-align: center;
+}
+</style>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+  <div class="container">
+
+    <div class="jumbotron centerfy">
+      <h1>You are not Deep Working!</h1>
+      <p class="lead">You cannot rate an non existent activity</p>
+      <p>
+        <a class="btn btn-lg btn-warning" th:href="@{/}"
+          href="list_activities.html" role="button">Go back</a>
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
